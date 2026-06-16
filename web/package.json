@@ -1,0 +1,9 @@
+{
+  "name": "gaa-web",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Next.js app for the Governed Agentic Analytics Platform (scaffolded in Phase 5).",
+  "scripts": {
+    "placeholder": "echo \"web app is scaffolded in Phase 5\""
+  }
+}

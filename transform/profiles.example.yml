@@ -1,0 +1,12 @@
+# Copy to ~/.dbt/profiles.yml or transform/profiles.yml (gitignored).
+gaa:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
+      dataset: marts
+      location: australia-southeast1
+      threads: 4
+      timeout_seconds: 300
