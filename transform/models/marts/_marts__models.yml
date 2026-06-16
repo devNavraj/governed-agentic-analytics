@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: dim_nem_region
+    description: NEM region dimension (region id, name, state, timezone).
+    columns:
+      - name: region_id
+        description: NEM region identifier (primary key).
+        data_tests:
+          - not_null
+          - unique
+
+  - name: fct_nem_interval_prices
+    description: Fact — one row per region per 5-minute settlement interval.
+    columns:
+      - name: nem_interval_key
+        description: Surrogate key (primary key).
+        data_tests:
+          - not_null
+          - unique
+      - name: region_id
+        description: NEM region (foreign key to dim_nem_region).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_nem_region')
+                field: region_id
+      - name: settlement_date
+        data_tests:
+          - not_null

@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_aemo__nem_summary
+    description: Cleaned, de-duplicated NEM summary — one row per region per 5-minute interval.
+    columns:
+      - name: nem_interval_key
+        description: Surrogate key — md5(region_id | settlement_date).
+        data_tests:
+          - not_null
+          - unique
+      - name: region_id
+        description: NEM region identifier.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['NSW1', 'QLD1', 'SA1', 'TAS1', 'VIC1']
+      - name: settlement_date
+        description: 5-minute settlement interval timestamp.
+        data_tests:
+          - not_null

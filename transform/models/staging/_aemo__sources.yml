@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw landed (bronze) zone — BigQuery autodetect loads from GCS NDJSON.
+    database: governed-agentic-analytics
+    schema: raw
+    tables:
+      - name: aemo__nem_summary
+        description: AEMO NEM summary — one record per region per 5-minute settlement interval.
+        config:
+          loaded_at_field: _ingested_at
+          freshness:
+            warn_after: { count: 2, period: hour }
+            error_after: { count: 24, period: hour }
+        columns:
+          - name: REGIONID
+            description: NEM region identifier (e.g. NSW1).
+          - name: SETTLEMENTDATE
+            description: 5-minute settlement interval timestamp.
